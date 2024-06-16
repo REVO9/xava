@@ -133,11 +133,11 @@ void validate_config(XAVA *hand, xava_config_source config) {
             " the form '#xxxxxx'");
 
     // validate: gradient colors
-    for(unsigned int i = 0; i < arr_count(p->gradients); i++){
-        xavaBailCondition(!validate_color(p->gradients[i]),
-            "The gradient color %d is invalid!\n"
-            "It can only be a HTML color of the form '#xxxxxx'", i+1);
-    }
+    // for(unsigned int i = 0; i < arr_count(p->gradients); i++){
+    //     xavaBailCondition(!validate_color(p->gradients[i]),
+    //         "The gradient color %d is invalid!\n"
+    //         "It can only be a HTML color of the form '#xxxxxx'", i+1);
+    // }
 
     // actually parse colors
     p->col = parse_color(p->color, DEF_FG_COL);    // default cyan if invalid
