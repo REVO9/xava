@@ -130,8 +130,8 @@ EXP_FUNC void xava_gl_module_init(XAVAGLModuleOptions *options) {
         gradientColor[i*4+0] = ARGB_R_32(grad_col) / 255.0;
         gradientColor[i*4+1] = ARGB_G_32(grad_col) / 255.0;
         gradientColor[i*4+2] = ARGB_B_32(grad_col) / 255.0;
-        //gradientColor[i*4+3] = ARGB_A_32(grad_col) / 255.0;
-        gradientColor[i*4+3] = conf->foreground_opacity;
+        gradientColor[i*4+3] = ARGB_A_32(grad_col) / 255.0;
+        // gradientColor[i*4+3] = conf->foreground_opacity;
     }
 
     shouldRestart = false;

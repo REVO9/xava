@@ -190,8 +190,9 @@ void SGLClear(XAVA *xava) {
 
 void SGLDraw(XAVA *xava) {
     glEnable(GL_BLEND);
-    glBlendEquationSeparate(GL_FUNC_ADD, GL_MAX);
-    glBlendFuncSeparate(GL_ONE, GL_ONE, GL_SRC_ALPHA, GL_DST_ALPHA);
+    // glBlendEquationSeparate(GL_FUNC_ADD, GL_MAX);
+    // glBlendFuncSeparate(GL_ONE, GL_ONE, GL_SRC_ALPHA, GL_DST_ALPHA);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     // bind render target to texture
     xava_gl_module_post_pre_draw_setup(&host);
