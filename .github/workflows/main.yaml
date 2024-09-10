@@ -26,7 +26,7 @@ jobs:
 
     name: 🚧${{ matrix.icon }} ${{ matrix.system }} (${{ matrix.arch }})
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
 
@@ -51,27 +51,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: rm -rf *
-      - uses: actions/download-artifact@v3
-
-      - name: Reorganize release files
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: xava-*
+      - uses: actions/download-artifact@v4
+        with:
+          name: version.txt
+      - name: Show artifact files
         run: |
-          ls -R
-          for i in xava-*; do
-            mv $i temp
-            mv temp/$i $i
-            rmdir temp
-          done
           ls -R
 
       - name: Read version file
         run: |
-          cat version.txt/version.txt
-          VER=$(cat version.txt/version.txt)
+          cat version.txt
+          VER=$(cat version.txt)
           echo "VERSION=$VER" >> $GITHUB_ENV
 
       - uses: "marvinpinto/action-automatic-releases@latest"
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         with:
           repo_token: "${{ secrets.GH_ACCESS_TOKEN }}"
           automatic_release_tag: ${{ env.VERSION }}
